@@ -20,6 +20,13 @@ Projeto desenvolvido em HTML, CSS e JavaScript.
 - Melhorias visuais
 - Versão Android (PWA/APK)
 
+📌 Backlog
+ 
+- Catálogo permanente de produtos
+- Preenchimento automático de preços
+- Histórico de compras``
+- Auto completar itens
+
 ## 🛠 Tecnologias utilizadas
  
 - HTML5
