@@ -8,11 +8,13 @@ function adicionarItem() {
     const item = {
         nome: nome,
         quantidade: quantidade,
-        valor: valor
+        valor: valor,
+        comprado:false
     }
     listaCompras.push(item)
     renderizarLista();
     atualizarValor();
+    //atualizarTotalComprado();
 }
 function atualizarValor(){
     let total = 0
@@ -23,6 +25,11 @@ function atualizarValor(){
 
     console.log(total)
 }
+/*function atualizarTotalComprado(){
+    if(item.comprado){
+        totalComprado+=(item.valor*item.quantidade).toFixed(2);
+    }
+}*/
 function menos(){
     const quantidade = document.getElementById("quantidadeItem");
     if (quantidade.value>1){
@@ -41,10 +48,33 @@ function renderizarLista(){
     const lista = document.getElementById("listaCompras")
     lista.innerHTML = "";
     for(let item of listaCompras){
-        const li = document.createElement('li');
-        li.textContent=`${item.nome}  |  ${item.quantidade} | ${(item.valor*item.quantidade).toFixed(2)}`
-        lista.appendChild(li)
-        console.log(li)
+        const itemDiv=document.createElement('div')
+        itemDiv.classList.add('item')
+        const checkBox=document.createElement('input')
+        checkBox.type='checkbox';
+        checkBox.checked=item.comprado;
+        itemDiv.appendChild(checkBox);
+        const nomeDiv=document.createElement('div')
+        nomeDiv.textContent=item.nome;
+        nomeDiv.classList.add("nome");
+        itemDiv.appendChild(nomeDiv);
+        const qtdDiv=document.createElement('div')
+        qtdDiv.classList.add("qtd");
+        qtdDiv.textContent=item.quantidade;
+        itemDiv.appendChild(qtdDiv);
+        const valorDiv=document.createElement('div')
+        valorDiv.textContent=`R$ ${(item.valor * item.quantidade).toFixed(2)}`;
+        itemDiv.appendChild(valorDiv);
+        valorDiv.classList.add("valor");
+        lista.appendChild(itemDiv);
+    }
+    checkBox.addEventListener("change", function(){
+        item.comprado = checkBox.checked;
+    });
+}
+/*marcarTodos.addEventListener(
+    'change',
+    function(){
 
     }
-}
+);*/
