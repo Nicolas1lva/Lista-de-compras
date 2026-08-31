@@ -21,15 +21,17 @@ function atualizarValor(){
     for(let item of listaCompras){
         total += item.valor*item.quantidade;
     }
-    document.getElementById('totalCompra').textContent = `total: R$ ${total.toFixed(2)}`
-
-    console.log(total)
+    document.getElementById('totalCompra').textContent = `Total: R$ ${total.toFixed(2)}`
 }
-/*function atualizarTotalComprado(){
-    if(item.comprado){
-        totalComprado+=(item.valor*item.quantidade).toFixed(2);
+function atualizarTotalComprado(){
+    let totalComprado=0;
+    for(let item of listaCompras){
+        if(item.comprado){
+            totalComprado+=item.valor*item.quantidade;
+        }
     }
-}*/
+    document.getElementById('totalComprado').textContent = `Total: R$ ${totalcomprado.toFixed(2)}`
+}
 function menos(){
     const quantidade = document.getElementById("quantidadeItem");
     if (quantidade.value>1){
@@ -67,10 +69,11 @@ function renderizarLista(){
         itemDiv.appendChild(valorDiv);
         valorDiv.classList.add("valor");
         lista.appendChild(itemDiv);
+        checkBox.addEventListener("change", function(){
+            item.comprado = checkBox.checked;
+            atualizarTotalComprado();
+        });
     }
-    checkBox.addEventListener("change", function(){
-        item.comprado = checkBox.checked;
-    });
 }
 /*marcarTodos.addEventListener(
     'change',

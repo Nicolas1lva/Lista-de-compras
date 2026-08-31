@@ -62,3 +62,7 @@ button{
     width: 80px;
     text-align: center;
 }
+.comprado{
+    text-decoration: line-through;
+    opacity: 0.7;
+}
