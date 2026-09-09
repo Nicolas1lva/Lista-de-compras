@@ -82,8 +82,21 @@ function renderizarLista(){
         const btnExcluir=document.createElement("button");
         btnExcluir.textContent = "🗑️";
         itemDiv.appendChild(btnExcluir);
+        btnExcluir.addEventListener('click',() => {
+            listaCompras.splice(indice,1)
+            renderizarLista();
+            atualizarValor();
+            atualizarTotalComprado();
+        });
+        limparCampos();
 
     });
+}
+function limparCampos(){
+    document.getElementById("nomeItem").value="";
+    document.getElementById("valorItem").value="";
+    document.getElementById("quantidadeItem").value=1;
+    document.getElementById("nomeItem").focus();
 }
 /*marcarTodos.addEventListener(
     'change',
